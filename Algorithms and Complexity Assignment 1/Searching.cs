@@ -1,26 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
+using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Algorithms_and_Complexity_Assignment_1
 {
     internal class Searching
     {
 
-        private int[] _array;
-
-        public int[] Array
-        {
-            get { return _array; }
-            set { _array = value; }
-        }
-
-        public Searching(int[] arr)
-        {
-            _array = arr;
-        }
 
         int LinearSearch(int[] arr, int value)
         {

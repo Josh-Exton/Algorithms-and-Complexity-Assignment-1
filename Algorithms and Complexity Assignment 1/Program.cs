@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
@@ -12,6 +13,14 @@ namespace Algorithms_and_Complexity_Assignment_1
     {
         static void Main(string[] args)
         {
+            Sorting sort = new Sorting();
+            int[] unsorted = { 5, 8, 3, 7, 6, 2, 9, 1, 4 };
+            int[] sorted = unsorted;
+            sort.InsertionSort(sorted);
+            foreach (int i in sorted)
+            { 
+                Console.Write($"{i} ");
+            }
             Console.ReadKey();
         }
     }
