@@ -36,6 +36,11 @@ int BinarySearch(int[] arr, int value)
     return mid;
 }
 
+int[] BubbleSort(int[] arr)
+{
+    return arr;
+}
+
 
 int[] array = { 3,9,2,5,1,4,8};
 
