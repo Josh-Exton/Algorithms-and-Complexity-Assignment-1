@@ -1,0 +1,14 @@
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\bin\Debug\net7.0\Algorithms and Complexity Assignment 1.exe
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\bin\Debug\net7.0\Algorithms and Complexity Assignment 1.deps.json
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\bin\Debug\net7.0\Algorithms and Complexity Assignment 1.runtimeconfig.json
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\bin\Debug\net7.0\Algorithms and Complexity Assignment 1.dll
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\bin\Debug\net7.0\Algorithms and Complexity Assignment 1.pdb
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\obj\Debug\net7.0\Algorithms and Complexity Assignment 1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\obj\Debug\net7.0\Algorithms and Complexity Assignment 1.AssemblyInfoInputs.cache
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\obj\Debug\net7.0\Algorithms and Complexity Assignment 1.AssemblyInfo.cs
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\obj\Debug\net7.0\Algorithms and Complexity Assignment 1.csproj.CoreCompileInputs.cache
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\obj\Debug\net7.0\Algorithms and Complexity Assignment 1.dll
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\obj\Debug\net7.0\refint\Algorithms and Complexity Assignment 1.dll
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\obj\Debug\net7.0\Algorithms and Complexity Assignment 1.pdb
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\obj\Debug\net7.0\Algorithms and Complexity Assignment 1.genruntimeconfig.cache
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\obj\Debug\net7.0\ref\Algorithms and Complexity Assignment 1.dll

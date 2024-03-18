@@ -1,0 +1,4 @@
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\obj\Debug\net6.0\Algorithms and Complexity Assignment 1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\obj\Debug\net6.0\Algorithms and Complexity Assignment 1.AssemblyInfoInputs.cache
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\obj\Debug\net6.0\Algorithms and Complexity Assignment 1.AssemblyInfo.cs
+C:\Users\Computing\Downloads\Algorithms and Complexity Assignment 1\Algorithms and Complexity Assignment 1\obj\Debug\net6.0\Algorithms and Complexity Assignment 1.csproj.CoreCompileInputs.cache
