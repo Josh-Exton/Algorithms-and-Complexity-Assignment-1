@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
 using System.Diagnostics.Metrics;
 using System.Globalization;
@@ -41,13 +42,13 @@ namespace Algorithms_and_Complexity_Assignment_1
         }
 
         public int[] InsertionSort(int[] array)
-        { 
-            if (array.Length <= 1) 
-            { 
+        {
+            if (array.Length <= 1)
+            {
                 return array;
             }
             for (int i = 1; i < array.Length; i++)
-            { 
+            {
                 int currentValue = array[i];
                 for (int j = i - 1; j >= 0; j--)
                 {
@@ -60,7 +61,7 @@ namespace Algorithms_and_Complexity_Assignment_1
                         array[j + 1] = array[j];
                         array[j] = currentValue;
                     }
-                }    
+                }
             }
             return array;
         }
@@ -72,16 +73,43 @@ namespace Algorithms_and_Complexity_Assignment_1
                 return array;
             }
 
-            int marker = array[0];
-            int pivot = array[array.Length - 1];
+            int marker = 0;
+            int pivot = array.Length - 1;
             while (marker != pivot)
+            {
                 if (((array[marker] > array[pivot]) && marker < pivot) || ((array[marker] < array[pivot]) && marker > pivot))
-
+                {
+                    int temp = array[marker];
+                    array[marker] = array[pivot];
+                    array[pivot] = temp;
+                }
+                if (marker < pivot)
+                {
+                    marker++;
+                }
+                else
+                {
+                    marker--;
+                }
+            }
+            int[] leftArray = new int[(array.Length - marker - 1)];
+            Array.Copy(array, 0, leftArray, 0, (array.Length - marker - 1));
+            int[] rightArray = new int[(array.Length - marker + 1)];
+            Array.Copy(array, 0, rightArray, 0, (array.Length - marker + 1));
+            QuickSort(leftArray);
+            QuickSort(rightArray);
+            int[] FinalArray = new int[array.Length];
+            Array.Copy(leftArray, 0, FinalArray, 0, (array.Length - marker - 1));
+            Array.Copy(array, marker, FinalArray, 0, 0);
+            Array.Copy(rightArray, 0, FinalArray, 0, (array.Length - marker + 1));
             return array;
         }
-
-        private int[] Partioning(int[] array)
+        public int[] MergeSort(int[] array)
         {
+            if (array.Length <= 1)
+            {
+                return array;
+            }
             return array;
         }
     }

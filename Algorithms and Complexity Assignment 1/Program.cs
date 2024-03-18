@@ -16,7 +16,7 @@ namespace Algorithms_and_Complexity_Assignment_1
             Sorting sort = new Sorting();
             int[] unsorted = { 5, 8, 3, 7, 6, 2, 9, 1, 4 };
             int[] sorted = unsorted;
-            sort.InsertionSort(sorted);
+            sort.QuickSort(sorted);
             foreach (int i in sorted)
             { 
                 Console.Write($"{i} ");
