@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -16,29 +17,89 @@ namespace Algorithms_and_Complexity_Assignment_1
     internal class Sorting
     {
 
-        public int[] BubbleSort(int[] list)
-        // public List<int> BubbleSort(List<int> list)
+        private void Swap(int[] array, int left, int right)
         {
-            if (list.Length <= 1)
+            int temp = array[left];
+            array[left] = array[right];
+            array[right] = temp;
+        }
+
+        private int Partition(int[] array, int left, int right)
+        {
+            int pivotIndex = left;
+            int pivot = array[left];
+            for (int i = left + 1; i <= right; i++) 
             {
-                return list;
+                if (array[i] > pivot)
+                {
+                    pivotIndex++;
+                    Swap(array, pivotIndex, i);
+                }
+            }
+            Swap(array, pivotIndex, left);
+            return pivotIndex;
+        }
+
+        private void Merge(int[] array, int[] left, int[] right)
+        {
+            int arrayCounter = 0;
+            int leftCounter = 0;
+            int rightCounter = 0;
+            while (leftCounter + rightCounter < array.Length - 1)
+            {
+                if (left[leftCounter] >= right[rightCounter])
+                {
+                    array[arrayCounter] = left[leftCounter];
+                    leftCounter++;
+                    arrayCounter++;
+                }
+                else 
+                {
+                    array[arrayCounter] = right[rightCounter];
+                    rightCounter++;
+                    arrayCounter++;
+                }
+                if (leftCounter >= array.Length - rightCounter - 1)
+                {
+                    for (int i = 0; i < array.Length - leftCounter - 1; i++)
+                    {
+                        array[arrayCounter] = right[rightCounter];
+                        rightCounter++;
+                        arrayCounter++;
+                    }
+                }
+                else if (rightCounter >= array.Length - leftCounter - 1)
+                {
+                    for (int i = 0; i < array.Length - rightCounter - 1; i++)
+                    {
+                        array[arrayCounter] = left[leftCounter];
+                        leftCounter++;
+                        arrayCounter++;
+                    }
+                }
+            }
+        }
+
+        public int[] BubbleSort(int[] array)
+        {
+            if (array.Length <= 1)
+            {
+                return array;
             }
             bool done = false;
             while (!done)
             {
                 done = true;
-                for (int i = 0; i < list.Length - 1; i++)
+                for (int i = 0; i < array.Length - 1; i++)
                 {
-                    if (list[i] > list[i + 1])
+                    if (array[i] > array[i + 1])
                     {
-                        int temp = list[i];
-                        list[i] = list[i + 1];
-                        list[i + 1] = temp;
+                        Swap(array, i, i + 1);
                         done = false;
                     }
                 }
             }
-            return list;
+            return array;
         }
 
         public int[] InsertionSort(int[] array)
@@ -66,49 +127,30 @@ namespace Algorithms_and_Complexity_Assignment_1
             return array;
         }
 
-        public int[] QuickSort(int[] array)
+        public int[] QuickSort(int[] array, int left, int right)
         {
-            if (array.Length <= 1)
+            if (left < right)
             {
-                return array;
+                int pivot = Partition(array, left, right);
+                QuickSort(array, left, pivot - 1);
+                QuickSort(array, pivot + 1, right);
             }
-
-            int marker = 0;
-            int pivot = array.Length - 1;
-            while (marker != pivot)
-            {
-                if (((array[marker] > array[pivot]) && marker < pivot) || ((array[marker] < array[pivot]) && marker > pivot))
-                {
-                    int temp = array[marker];
-                    array[marker] = array[pivot];
-                    array[pivot] = temp;
-                }
-                if (marker < pivot)
-                {
-                    marker++;
-                }
-                else
-                {
-                    marker--;
-                }
-            }
-            int[] leftArray = new int[(array.Length - marker - 1)];
-            Array.Copy(array, 0, leftArray, 0, (array.Length - marker - 1));
-            int[] rightArray = new int[(array.Length - marker + 1)];
-            Array.Copy(array, 0, rightArray, 0, (array.Length - marker + 1));
-            QuickSort(leftArray);
-            QuickSort(rightArray);
-            int[] FinalArray = new int[array.Length];
-            Array.Copy(leftArray, 0, FinalArray, 0, (array.Length - marker - 1));
-            Array.Copy(array, marker, FinalArray, 0, 0);
-            Array.Copy(rightArray, 0, FinalArray, 0, (array.Length - marker + 1));
             return array;
         }
         public int[] MergeSort(int[] array)
         {
-            if (array.Length <= 1)
+            if (array.Length > 1)
             {
-                return array;
+                int leftSize = ((array.Length) / 2);
+                int rightSize = array.Length - leftSize;
+                int[] left = new int[leftSize];
+                int[] right = new int[rightSize];
+                Array.Copy(array, 0, left, 0, leftSize);
+                Array.Copy(array, leftSize, right, 0, rightSize);
+                MergeSort(left);
+                MergeSort(right);
+                Merge(array,left,right);
+
             }
             return array;
         }
