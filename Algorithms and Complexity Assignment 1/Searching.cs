@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Globalization;
@@ -15,11 +15,11 @@ namespace Algorithms_and_Complexity_Assignment_1
     {
 
 
-        int LinearSearch(int[] arr, int value)
+        int LinearSearch(int[] array, int value)
         {
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
-                if (arr[i] == value)
+                if (array[i] == value)
                 {
                     return i;
                 }
@@ -27,14 +27,14 @@ namespace Algorithms_and_Complexity_Assignment_1
             Console.WriteLine("The item wasn't in the list returning -1");
             return -1;
         }
-        public int BinarySearch(int[] arr, int value)
+        public int BinarySearch(int[] array, int value)
         {
             int beggining = 0;
-            int end = arr.Length - 1;
+            int end = array.Length - 1;
             int mid = (beggining + end) / 2;
-            while ((arr[mid] != value) && (beggining <= end))
+            while ((array[mid] != value) && (beggining <= end))
             {
-                if (arr[mid] < value)
+                if (array[mid] < value)
                 {
                     beggining = mid + 1;
                 }
