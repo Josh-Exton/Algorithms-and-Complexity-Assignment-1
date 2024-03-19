@@ -98,14 +98,10 @@ namespace Algorithms_and_Complexity_Assignment_1
             
         }
 
-        public int[] BubbleSort(int[] array, string order)
+        public void BubbleSort(int[] array, string order)
         {
-            if (array.Length <= 1)
-            {
-                return array;
-            }
             bool done = false;
-            while (!done)
+            while (!done && ((array.Length - 1) >= 1))
             {
                 done = true;
                 for (int i = 0; i < array.Length - 1; i++)
@@ -122,51 +118,48 @@ namespace Algorithms_and_Complexity_Assignment_1
                     }
                 }
             }
-            return array;
         }
 
-        public int[] InsertionSort(int[] array, string order)
+        public void InsertionSort(int[] array, string order)
         {
-            if (array.Length <= 1)
+            if (array.Length >= 1)
             {
-                return array;
-            }
-            for (int i = 1; i < array.Length; i++)
-            {
-                int currentValue = array[i];
-                for (int j = i - 1; j >= 0; j--)
+                for (int i = 1; i < array.Length; i++)
                 {
-                    if (order == "ascending")
+                    int currentValue = array[i];
+                    for (int j = i - 1; j >= 0; j--)
                     {
-                        if (currentValue > array[j])
+                        if (order == "ascending")
                         {
-                            break;
+                            if (currentValue > array[j])
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                array[j + 1] = array[j];
+                                array[j] = currentValue;
+                            }
                         }
-                        else
-                        {
-                            array[j + 1] = array[j];
-                            array[j] = currentValue;
-                        }
-                    }
 
-                    else if (order == "descending")
-                    {
-                        if (currentValue < array[j])
+                        else if (order == "descending")
                         {
-                            break;
-                        }
-                        else
-                        {
-                            array[j + 1] = array[j];
-                            array[j] = currentValue;
+                            if (currentValue < array[j])
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                array[j + 1] = array[j];
+                                array[j] = currentValue;
+                            }
                         }
                     }
                 }
             }
-            return array;
         }
 
-        public int[] QuickSort(int[] array, int left, int right, string order)
+        public void QuickSort(int[] array, int left, int right, string order)
         {
             if (left < right)
             {
@@ -174,9 +167,8 @@ namespace Algorithms_and_Complexity_Assignment_1
                 QuickSort(array, left, pivot - 1, order);
                 QuickSort(array, pivot + 1, right, order);
             }
-            return array;
         }
-        public int[] MergeSort(int[] array, string order)
+        public void MergeSort(int[] array, string order)
         {
             if (array.Length > 1)
             {
@@ -191,7 +183,6 @@ namespace Algorithms_and_Complexity_Assignment_1
                 Merge(array,left,right, order);
 
             }
-            return array;
         }
     }
 }
