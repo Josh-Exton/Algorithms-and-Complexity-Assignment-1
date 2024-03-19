@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
@@ -24,13 +24,18 @@ namespace Algorithms_and_Complexity_Assignment_1
             array[right] = temp;
         }
 
-        private int Partition(int[] array, int left, int right)
+        private int Partition(int[] array, int left, int right, string order)
         {
-            int pivotIndex = left;
+            int pivotIndex = left;   
             int pivot = array[left];
             for (int i = left + 1; i <= right; i++) 
             {
-                if (array[i] > pivot)
+                if (order == "ascending" && (array[i] < pivot))
+                {
+                    pivotIndex++;
+                    Swap(array, pivotIndex, i);
+                }
+                if (order == "descending" && (array[i] > pivot))
                 {
                     pivotIndex++;
                     Swap(array, pivotIndex, i);
@@ -40,47 +45,60 @@ namespace Algorithms_and_Complexity_Assignment_1
             return pivotIndex;
         }
 
-        private void Merge(int[] array, int[] left, int[] right)
+        private void Merge(int[] array, int[] left, int[] right, string order)
         {
-            int arrayCounter = 0;
-            int leftCounter = 0;
-            int rightCounter = 0;
-            while (leftCounter + rightCounter < array.Length - 1)
+            int arrayIndex = 0;
+            int leftIndex = 0;
+            int rightIndex = 0;
+            while (leftIndex < left.Length && rightIndex < right.Length)
             {
-                if (left[leftCounter] >= right[rightCounter])
+                if (order == "ascending")
                 {
-                    array[arrayCounter] = left[leftCounter];
-                    leftCounter++;
-                    arrayCounter++;
-                }
-                else 
-                {
-                    array[arrayCounter] = right[rightCounter];
-                    rightCounter++;
-                    arrayCounter++;
-                }
-                if (leftCounter >= array.Length - rightCounter - 1)
-                {
-                    for (int i = 0; i < array.Length - leftCounter - 1; i++)
+                    if (left[leftIndex] < right[rightIndex])
                     {
-                        array[arrayCounter] = right[rightCounter];
-                        rightCounter++;
-                        arrayCounter++;
+                        array[arrayIndex] = left[leftIndex];
+                        leftIndex++;
                     }
-                }
-                else if (rightCounter >= array.Length - leftCounter - 1)
-                {
-                    for (int i = 0; i < array.Length - rightCounter - 1; i++)
+                    else
                     {
-                        array[arrayCounter] = left[leftCounter];
-                        leftCounter++;
-                        arrayCounter++;
+                        array[arrayIndex] = right[rightIndex];
+                        rightIndex++;
                     }
+                    arrayIndex++;
+                }
+
+                if (order == "descending")
+                {
+                    if (left[leftIndex] < right[rightIndex])
+                    {
+                        array[arrayIndex] = right[rightIndex];
+                        rightIndex++;
+                    }
+                    else
+                    {
+                        array[arrayIndex] = left[leftIndex];
+                        leftIndex++;
+                    }
+                    arrayIndex++;
                 }
             }
+            while (leftIndex < left.Length)
+            {
+                array[arrayIndex] = left[leftIndex];
+                leftIndex++;
+                arrayIndex++;
+            }
+
+            while (rightIndex < right.Length)
+            {
+                array[arrayIndex] = right[rightIndex];
+                rightIndex++;
+                arrayIndex++;
+            }
+            
         }
 
-        public int[] BubbleSort(int[] array)
+        public int[] BubbleSort(int[] array, string order)
         {
             if (array.Length <= 1)
             {
@@ -92,7 +110,12 @@ namespace Algorithms_and_Complexity_Assignment_1
                 done = true;
                 for (int i = 0; i < array.Length - 1; i++)
                 {
-                    if (array[i] > array[i + 1])
+                    if (order == "ascending" && (array[i] > array[i + 1]))
+                    {
+                        Swap(array, i, i + 1);
+                        done = false;
+                    }
+                    else if (order == "descending" && (array[i] < array[i + 1]))
                     {
                         Swap(array, i, i + 1);
                         done = false;
@@ -102,7 +125,7 @@ namespace Algorithms_and_Complexity_Assignment_1
             return array;
         }
 
-        public int[] InsertionSort(int[] array)
+        public int[] InsertionSort(int[] array, string order)
         {
             if (array.Length <= 1)
             {
@@ -113,31 +136,47 @@ namespace Algorithms_and_Complexity_Assignment_1
                 int currentValue = array[i];
                 for (int j = i - 1; j >= 0; j--)
                 {
-                    if (currentValue > array[j])
+                    if (order == "ascending")
                     {
-                        break;
+                        if (currentValue > array[j])
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            array[j + 1] = array[j];
+                            array[j] = currentValue;
+                        }
                     }
-                    else
+
+                    else if (order == "descending")
                     {
-                        array[j + 1] = array[j];
-                        array[j] = currentValue;
+                        if (currentValue < array[j])
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            array[j + 1] = array[j];
+                            array[j] = currentValue;
+                        }
                     }
                 }
             }
             return array;
         }
 
-        public int[] QuickSort(int[] array, int left, int right)
+        public int[] QuickSort(int[] array, int left, int right, string order)
         {
             if (left < right)
             {
-                int pivot = Partition(array, left, right);
-                QuickSort(array, left, pivot - 1);
-                QuickSort(array, pivot + 1, right);
+                int pivot = Partition(array, left, right, order);
+                QuickSort(array, left, pivot - 1, order);
+                QuickSort(array, pivot + 1, right, order);
             }
             return array;
         }
-        public int[] MergeSort(int[] array)
+        public int[] MergeSort(int[] array, string order)
         {
             if (array.Length > 1)
             {
@@ -147,9 +186,9 @@ namespace Algorithms_and_Complexity_Assignment_1
                 int[] right = new int[rightSize];
                 Array.Copy(array, 0, left, 0, leftSize);
                 Array.Copy(array, leftSize, right, 0, rightSize);
-                MergeSort(left);
-                MergeSort(right);
-                Merge(array,left,right);
+                MergeSort(left, order);
+                MergeSort(right, order);
+                Merge(array,left,right, order);
 
             }
             return array;
