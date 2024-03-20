@@ -43,6 +43,7 @@ namespace Algorithms_and_Complexity_Assignment_1
                     return array;
                 }
             }
+
             catch (Exception ex) 
             {
                 Console.WriteLine("An error occurred while opening the file so we are returning a empty array:");
