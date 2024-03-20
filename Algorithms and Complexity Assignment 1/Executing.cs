@@ -1,9 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Algorithms_and_Complexity_Assignment_1
 {
     internal class Executing
@@ -11,87 +5,123 @@ namespace Algorithms_and_Complexity_Assignment_1
         Sorting sort = new Sorting();
         Searching search = new Searching();
 
-        public void Run(int[] array) 
+        private void Printing(int[] array, string order)
         {
-            int[] BubbleSortArrayAscending = array;
-            sort.BubbleSort(BubbleSortArrayAscending, "ascending");
-            int[] BubbleSortArrayDescending = array;
-            sort.BubbleSort(BubbleSortArrayDescending, "descending");
-
-            int[] InsertionSortArrayAscending = array;
-            sort.InsertionSort(InsertionSortArrayAscending, "ascending");
-            int[] InsertionSortArrayDescending = array;
-            sort.InsertionSort(InsertionSortArrayDescending, "descending");
-
-            int[] MergeSortArrayAscending = array;
-            sort.MergeSort(MergeSortArrayAscending, "ascending");
-            int[] MergeSortArrayDescending = array;
-            sort.MergeSort(MergeSortArrayDescending, "descending");
-
-            int[] QuickSort256Ascending = array;
-            sort.InsertionSort(QuickSort256Ascending, "ascending");
-            int[] QuickSort256Descending = array;
-            sort.InsertionSort(QuickSort256Descending, "descending");
-
-
-            if ((array.Length >= 256) && (array.Length <= 512)) 
+            if ((array.Length >= 256) && (array.Length <= 512))
             {
-                Console.WriteLine("This is every 10th value in the ascending order");
-
-                for (int i = 9; i < BubbleSortArrayAscending.Length; i = i + 10)
+                if (order == "ascending")
                 {
-                    Console.WriteLine(BubbleSortArrayAscending[i]);
+                    Console.WriteLine("This is every 10th value in the ascending order");
+
+                    for (int i = 0; i < array.Length; i = i + 10)
+                    {
+                        Console.WriteLine(array[i]);
+                    }
                 }
 
-                Console.WriteLine("This is every 10th value in the descending order");
-
-                for (int i = 9; i < BubbleSortArrayDescending.Length; i = i + 10)
+                else if (order == "descending")
                 {
-                    Console.WriteLine(BubbleSortArrayDescending[i]);
+                    Console.WriteLine("This is every 10th value in the descending order");
+
+                    for (int i = 0; i < array.Length; i = i + 10)
+                    {
+                        Console.WriteLine(array[i]);
+                    }
                 }
             }
 
             else if ((array.Length >= 2048) && (array.Length <= 4096))
             {
-                Console.WriteLine("This is every 50th value in the ascending order");
-
-                for (int i = 49; i < BubbleSortArrayAscending.Length; i = i + 50)
+                if (order == "ascending")
                 {
-                    Console.WriteLine(BubbleSortArrayAscending[i]);
-                }
+                    Console.WriteLine("This is every 50th value in the ascending order");
 
-                Console.WriteLine("This is every 50th value in the descending order");
-
-                for (int i = 49; i < BubbleSortArrayDescending.Length; i = i + 50)
-                {
-                    Console.WriteLine(BubbleSortArrayDescending[i]);
-                }
-
-                Console.WriteLine();
-                Console.WriteLine("input a integer please: ");
-                string asendingInput;
-
-                while (asendingInput.GetType() != int)
-                {
-                    asendingInput = Console.ReadLine();
-                    try
+                    for (int i = 0; i < array.Length; i = i + 50)
                     {
-                        asendingInput = Convert.ToInt32();
-                    }
-                    catch (Exception ex)
-                    { 
-                        Console.WriteLine("You didn't enter a integer can you please enter one");
+                        Console.WriteLine(array[i]);
                     }
                 }
 
-                Console.WriteLine($"Searching ascending order return {search.BinarySearch(BubbleSortArrayAscending, 1)}");
+                else if (order == "descending")
+                {
 
+                    Console.WriteLine("This is every 50th value in the descending order");
 
-                Console.WriteLine();
-                Console.WriteLine("input a integer please: ");
-                string DesendingInput = Console.ReadLine();
-                Console.WriteLine($"Searching descending order return {search.BinarySearch(BubbleSortArrayDescending, 1)}");
+                    for (int i = 0; i < array.Length; i = i + 50)
+                    {
+                        Console.WriteLine(array[i]);
+                    }
+                }
             }
+        }
+
+        private void Input(int[] array, string order)
+        {
+            int number = -1;
+            string input;
+
+            while (number < 0)
+            {
+                Console.WriteLine("input a integer please: ");
+                input = Console.ReadLine();
+                input.Trim();
+
+                if (int.TryParse(input, out int temp))
+                {
+                    number = temp;
+                }
+                else
+                {
+                    Console.WriteLine("You didn't enter a positive integer");
+                }
+            }
+            search.LinearSearch(array, number);
+            Console.WriteLine($"The index of the value is {search.BinarySearch(array, number, order)}");
+        }
+
+        public void AlgorithmsExecuted(int[] array) 
+        {
+            int[] unsortedArray = new int[array.Length];
+            Array.Copy(array, unsortedArray, unsortedArray.Length);
+
+            int[] bubbleSortArrayAscending = new int[unsortedArray.Length];
+            Array.Copy(unsortedArray, bubbleSortArrayAscending, unsortedArray.Length);
+            sort.BubbleSort(bubbleSortArrayAscending, "ascending");
+            int[] bubbleSortArrayDescending = new int[unsortedArray.Length];
+            Array.Copy(unsortedArray, bubbleSortArrayDescending, bubbleSortArrayDescending.Length);
+            sort.BubbleSort(bubbleSortArrayDescending, "descending");
+
+            int[] insertionSortArrayAscending = new int[unsortedArray.Length];
+            Array.Copy(unsortedArray, insertionSortArrayAscending, unsortedArray.Length);
+            sort.InsertionSort(insertionSortArrayAscending, "ascending");
+            int[] insertionSortArrayDescending = new int[unsortedArray.Length];
+            Array.Copy(unsortedArray, insertionSortArrayDescending, insertionSortArrayDescending.Length);
+            sort.InsertionSort(insertionSortArrayDescending, "descending");
+
+            int[] mergeSortArrayAscending = new int[unsortedArray.Length];
+            Array.Copy(unsortedArray, mergeSortArrayAscending, unsortedArray.Length);
+            sort.MergeSort(mergeSortArrayAscending, "ascending");
+            int[] mergeSortArrayDescending = new int[unsortedArray.Length];
+            Array.Copy(unsortedArray, mergeSortArrayDescending, mergeSortArrayDescending.Length);
+            sort.MergeSort(mergeSortArrayDescending, "descending");
+
+
+            int[] quickSortArrayAscending = new int[unsortedArray.Length];
+            Array.Copy(unsortedArray, quickSortArrayAscending, unsortedArray.Length);
+            sort.QuickSort(quickSortArrayAscending, 0 , quickSortArrayAscending.Length - 1, "ascending");
+            int[] quickSortArrayDescending = new int[unsortedArray.Length];
+            Array.Copy(unsortedArray, quickSortArrayDescending, quickSortArrayDescending.Length);
+            sort.QuickSort(quickSortArrayDescending, 0, quickSortArrayAscending.Length - 1, "descending");
+
+            Printing(bubbleSortArrayAscending, "ascending");
+            Printing(bubbleSortArrayDescending, "descending");
+
+            Console.WriteLine();
+            Console.WriteLine("This is for ascending list:");
+            Input(bubbleSortArrayAscending, "ascending");
+            Console.WriteLine();
+            Console.WriteLine("This is for descending list:");
+            Input(bubbleSortArrayDescending, "descending");
         }
     }
 }
