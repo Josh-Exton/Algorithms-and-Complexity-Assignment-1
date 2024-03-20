@@ -1,17 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Design;
-using System.Diagnostics.Metrics;
-using System.Globalization;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Runtime.ExceptionServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
 namespace Algorithms_and_Complexity_Assignment_1
 {
     internal class Sorting
@@ -101,11 +87,13 @@ namespace Algorithms_and_Complexity_Assignment_1
         public void BubbleSort(int[] array, string order)
         {
             bool done = false;
+            int counter = 0;
             while (!done && ((array.Length - 1) >= 1))
             {
                 done = true;
                 for (int i = 0; i < array.Length - 1; i++)
                 {
+                    counter++;
                     if (order == "ascending" && (array[i] > array[i + 1]))
                     {
                         Swap(array, i, i + 1);
@@ -118,10 +106,12 @@ namespace Algorithms_and_Complexity_Assignment_1
                     }
                 }
             }
+            Console.WriteLine($"The bubble sort did it in {counter} steps");
         }
 
         public void InsertionSort(int[] array, string order)
         {
+            int counter = 0;
             if (array.Length >= 1)
             {
                 for (int i = 1; i < array.Length; i++)
@@ -129,8 +119,10 @@ namespace Algorithms_and_Complexity_Assignment_1
                     int currentValue = array[i];
                     for (int j = i - 1; j >= 0; j--)
                     {
+                        counter++;
                         if (order == "ascending")
                         {
+
                             if (currentValue > array[j])
                             {
                                 break;
@@ -156,6 +148,7 @@ namespace Algorithms_and_Complexity_Assignment_1
                         }
                     }
                 }
+                Console.WriteLine($"The Insertion sort did it in {counter} steps");
             }
         }
 
@@ -167,9 +160,13 @@ namespace Algorithms_and_Complexity_Assignment_1
                 QuickSort(array, left, pivot - 1, order);
                 QuickSort(array, pivot + 1, right, order);
             }
+
+             // Console.WriteLine($"The quick sort did it in {counter} steps");
         }
+
         public void MergeSort(int[] array, string order)
         {
+            int counter = 0;
             if (array.Length > 1)
             {
                 int leftSize = ((array.Length) / 2);
@@ -181,8 +178,8 @@ namespace Algorithms_and_Complexity_Assignment_1
                 MergeSort(left, order);
                 MergeSort(right, order);
                 Merge(array,left,right, order);
-
             }
+            // Console.WriteLine($"The merge sort did it in {counter} steps");
         }
     }
 }
