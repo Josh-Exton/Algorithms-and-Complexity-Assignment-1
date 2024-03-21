@@ -1,7 +1,22 @@
+using System.Diagnostics.Metrics;
+
 namespace Algorithms_and_Complexity_Assignment_1
 {
     internal class Sorting
     {
+
+        private int _quickCounter;
+        private int _mergeCounter;
+
+        public int QuickCounter
+        {
+            get { return _quickCounter; }
+        }
+
+        public int MergeCounter
+        {
+            get { return _mergeCounter; }
+        }
 
         private void Swap(int[] array, int left, int right)
         {
@@ -16,6 +31,7 @@ namespace Algorithms_and_Complexity_Assignment_1
             int pivot = array[left];
             for (int i = left + 1; i <= right; i++) 
             {
+                _quickCounter++;
                 if (order == "ascending" && (array[i] < pivot))
                 {
                     pivotIndex++;
@@ -38,6 +54,7 @@ namespace Algorithms_and_Complexity_Assignment_1
             int rightIndex = 0;
             while (leftIndex < left.Length && rightIndex < right.Length)
             {
+                _mergeCounter++;
                 if (order == "ascending")
                 {
                     if (left[leftIndex] < right[rightIndex])
@@ -161,12 +178,10 @@ namespace Algorithms_and_Complexity_Assignment_1
                 QuickSort(array, pivot + 1, right, order);
             }
 
-             // Console.WriteLine($"The quick sort did it in {counter} steps");
         }
 
         public void MergeSort(int[] array, string order)
         {
-            int counter = 0;
             if (array.Length > 1)
             {
                 int leftSize = ((array.Length) / 2);
@@ -179,7 +194,12 @@ namespace Algorithms_and_Complexity_Assignment_1
                 MergeSort(right, order);
                 Merge(array,left,right, order);
             }
-            // Console.WriteLine($"The merge sort did it in {counter} steps");
+        }
+
+        public void ResetCounter()
+        { 
+            _quickCounter = 0;
+            _mergeCounter = 0;
         }
     }
 }

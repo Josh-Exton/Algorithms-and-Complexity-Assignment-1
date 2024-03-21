@@ -1,3 +1,5 @@
+using System.Diagnostics.Metrics;
+
 namespace Algorithms_and_Complexity_Assignment_1
 {
     internal class Executing
@@ -101,17 +103,22 @@ namespace Algorithms_and_Complexity_Assignment_1
             int[] mergeSortArrayAscending = new int[unsortedArray.Length];
             Array.Copy(unsortedArray, mergeSortArrayAscending, unsortedArray.Length);
             sort.MergeSort(mergeSortArrayAscending, "ascending");
+            Console.WriteLine($"The merge sort did it in {sort.MergeCounter} steps");
+            sort.ResetCounter();
             int[] mergeSortArrayDescending = new int[unsortedArray.Length];
             Array.Copy(unsortedArray, mergeSortArrayDescending, mergeSortArrayDescending.Length);
             sort.MergeSort(mergeSortArrayDescending, "descending");
-
+            Console.WriteLine($"The merge sort did it in {sort.MergeCounter} steps");
 
             int[] quickSortArrayAscending = new int[unsortedArray.Length];
             Array.Copy(unsortedArray, quickSortArrayAscending, unsortedArray.Length);
             sort.QuickSort(quickSortArrayAscending, 0 , quickSortArrayAscending.Length - 1, "ascending");
             int[] quickSortArrayDescending = new int[unsortedArray.Length];
+            Console.WriteLine($"The quick sort did it in {sort.QuickCounter} steps");
+            sort.ResetCounter();
             Array.Copy(unsortedArray, quickSortArrayDescending, quickSortArrayDescending.Length);
             sort.QuickSort(quickSortArrayDescending, 0, quickSortArrayAscending.Length - 1, "descending");
+            Console.WriteLine($"The quick sort did it in {sort.QuickCounter} steps");
 
             Printing(bubbleSortArrayAscending, "ascending");
             Printing(bubbleSortArrayDescending, "descending");

@@ -5,7 +5,7 @@ namespace Algorithms_and_Complexity_Assignment_1
 {
     internal class Files
     {
-        public int[] TxtFile (string fileName)
+        public int[] TxtFileToArray(string fileName)
         {
 
             string currentDirectory = Directory.GetCurrentDirectory();
